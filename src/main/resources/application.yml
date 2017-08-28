@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+  http: 
+    multipart:
+      enabled: true
+      max-file-size: 10M
+      max-request-size: 10M
+      
+mybatis:
+  type-aliases-package: com.limuren.blog.pojo
+  #config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+  
+#logging:
+ # config: classpath:logback.xml

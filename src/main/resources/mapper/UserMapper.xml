@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.limuren.blog.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.limuren.blog.pojo.User" >
+    <constructor >
+      <idArg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nickname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userhead" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="signature" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="role" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, username, password, email, nickname, userhead, signature, role, status, createTime, 
+    updateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.limuren.blog.pojo.User" >
+    insert into user (userid, username, password, 
+      email, nickname, userhead, 
+      signature, role, status, 
+      createTime, updateTime)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{userhead,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      <!-- #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP} -->
+      now(),now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.limuren.blog.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="userhead != null" >
+        userhead,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <!-- <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if> -->
+      createTime,
+      updateTime
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userhead != null" >
+        #{userhead,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <!-- <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if> -->
+      now(),
+      now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.limuren.blog.pojo.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userhead != null" >
+        userhead = #{userhead,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <!-- <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if> -->
+      updateTime = now()
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.limuren.blog.pojo.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      userhead = #{userhead,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      <!-- createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP} -->
+      updateTime = now()
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <select id="countUserByUsername" parameterType="map" resultType="java.lang.Integer">
+	select count(1) 
+	from user
+    where username = #{username}
+  </select>
+  <select id="countEmailByEmail" parameterType="map" resultType="java.lang.Integer">
+	select count(1) 
+	from user
+    where email = #{email}
+  </select>
+  <select id="countUserByUsernameAndPassword" parameterType="map" resultType="java.lang.Integer">
+	select count(1) 
+	from user
+    where username = #{username} AND password = #{password}
+  </select>
+  <select id="selectUserByUsernameAndPassword" parameterType="map" resultMap="BaseResultMap">
+	select <include refid="Base_Column_List" /> 
+	from user
+    where username = #{username} AND password = #{password}
+  </select>
+  <update id="updatePasswordByUsernameAndPassword" parameterType="map">
+  	update user
+  	set password = #{passwordNew}
+  	where userid = #{userid} AND password = #{passwordOld}
+  </update>
+    <update id="updateUserInfoByUserid" parameterType="com.limuren.blog.pojo.User" >
+    update user
+    <set >
+      <!-- <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if> -->
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userhead != null" >
+        userhead = #{userhead,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <!-- <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if> -->
+      <!-- <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if> -->
+      <!-- <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if> -->
+      updateTime = now()
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <select id="countOtherUserEmail" parameterType="map" resultType="java.lang.Integer">
+	select count(1)
+	from user
+    where userid != #{userid} AND email = #{email}
+  </select>
+  <select id="selectRoleByUserid" parameterType="map" resultType="java.lang.Integer">
+	select role
+	from user
+    where userid = #{userid}
+  </select>
+  <update id="setRoleANDStatusByUserid" parameterType="map" >
+    update user
+    set 
+      role = #{role,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      updateTime = now()
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

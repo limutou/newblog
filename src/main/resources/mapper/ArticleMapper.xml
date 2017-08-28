@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.limuren.blog.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.limuren.blog.pojo.Article" >
+    <constructor >
+      <idArg column="articleid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="tittle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="simpleText" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="imgurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.limuren.blog.pojo.Article" >
+    <constructor >
+      <idArg column="articleid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="tittle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="simpleText" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="imgurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="richText" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    articleid, user, tittle, simpleText, imgurl, status, createTime, updateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    richText
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where articleid = #{articleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from article
+    where articleid = #{articleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.limuren.blog.pojo.Article" >
+    insert into article (articleid, user, tittle, 
+      simpleText, imgurl, status, 
+      createTime, updateTime, richText
+      )
+    values (#{articleid,jdbcType=INTEGER}, #{user,jdbcType=INTEGER}, #{tittle,jdbcType=VARCHAR}, 
+      #{simpletext,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      now(), now(), #{richtext,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.limuren.blog.pojo.Article" >
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        articleid,
+      </if>
+      <if test="user != null" >
+        user,
+      </if>
+      <if test="tittle != null" >
+        tittle,
+      </if>
+      <if test="simpletext != null" >
+        simpleText,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <!-- <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if> -->
+      createTime,
+      updateTime,
+      <if test="richtext != null" >
+        richText,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        #{articleid,jdbcType=INTEGER},
+      </if>
+      <if test="user != null" >
+        #{user,jdbcType=INTEGER},
+      </if>
+      <if test="tittle != null" >
+        #{tittle,jdbcType=VARCHAR},
+      </if>
+      <if test="simpletext != null" >
+        #{simpletext,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <!-- <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if> -->
+      now(),
+      now(),
+      <if test="richtext != null" >
+        #{richtext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.limuren.blog.pojo.Article" >
+    update article
+    <set >
+      <if test="user != null" >
+        user = #{user,jdbcType=INTEGER},
+      </if>
+      <if test="tittle != null" >
+        tittle = #{tittle,jdbcType=VARCHAR},
+      </if>
+      <if test="simpletext != null" >
+        simpleText = #{simpletext,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <!-- <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if> -->
+        updateTime = now(),
+      <if test="richtext != null" >
+        richText = #{richtext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where articleid = #{articleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.limuren.blog.pojo.Article" >
+    update article
+    set user = #{user,jdbcType=INTEGER},
+      tittle = #{tittle,jdbcType=VARCHAR},
+      simpleText = #{simpletext,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      <!-- createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}, -->
+      updateTime = now(),
+      richText = #{richtext,jdbcType=LONGVARCHAR}
+    where articleid = #{articleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.limuren.blog.pojo.Article" >
+    update article
+    set user = #{user,jdbcType=INTEGER},
+      tittle = #{tittle,jdbcType=VARCHAR},
+      simpleText = #{simpletext,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      <!-- createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP} -->
+      updateTime = now()
+    where articleid = #{articleid,jdbcType=INTEGER}
+  </update>
+</mapper>

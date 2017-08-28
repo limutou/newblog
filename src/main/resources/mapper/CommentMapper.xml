@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.limuren.blog.mapper.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.limuren.blog.pojo.Comment" >
+    <constructor >
+      <idArg column="commentid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="commentContent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="opuser" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="article" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="comment" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loginip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    commentid, commentContent, opuser, article, comment, loginip, status, createTime, 
+    updateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where commentid = #{commentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comment
+    where commentid = #{commentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.limuren.blog.pojo.Comment" >
+    insert into comment (commentid, commentContent, opuser, 
+      article, comment, loginip, 
+      status, createTime, updateTime
+      )
+    values (#{commentid,jdbcType=INTEGER}, #{commentcontent,jdbcType=VARCHAR}, #{opuser,jdbcType=INTEGER}, 
+      #{article,jdbcType=INTEGER}, #{comment,jdbcType=INTEGER}, #{loginip,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, <!-- #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      ) -->now(),now()
+  </insert>
+  <insert id="insertSelective" parameterType="com.limuren.blog.pojo.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentid != null" >
+        commentid,
+      </if>
+      <if test="commentcontent != null" >
+        commentContent,
+      </if>
+      <if test="opuser != null" >
+        opuser,
+      </if>
+      <if test="article != null" >
+        article,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="loginip != null" >
+        loginip,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <!-- <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if> -->
+      now(),
+      now()
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentid != null" >
+        #{commentid,jdbcType=INTEGER},
+      </if>
+      <if test="commentcontent != null" >
+        #{commentcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="opuser != null" >
+        #{opuser,jdbcType=INTEGER},
+      </if>
+      <if test="article != null" >
+        #{article,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=INTEGER},
+      </if>
+      <if test="loginip != null" >
+        #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <!-- <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if> -->
+      now(),
+      now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.limuren.blog.pojo.Comment" >
+    update comment
+    <set >
+      <if test="commentcontent != null" >
+        commentContent = #{commentcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="opuser != null" >
+        opuser = #{opuser,jdbcType=INTEGER},
+      </if>
+      <if test="article != null" >
+        article = #{article,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=INTEGER},
+      </if>
+      <if test="loginip != null" >
+        loginip = #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <!-- <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if> -->
+      updateTime = now()
+    </set>
+    where commentid = #{commentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.limuren.blog.pojo.Comment" >
+    update comment
+    set commentContent = #{commentcontent,jdbcType=VARCHAR},
+      opuser = #{opuser,jdbcType=INTEGER},
+      article = #{article,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=INTEGER},
+      loginip = #{loginip,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      <!-- createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP} -->
+      updateTime = now()
+    where commentid = #{commentid,jdbcType=INTEGER}
+  </update>
+</mapper>

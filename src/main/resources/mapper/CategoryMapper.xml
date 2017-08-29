@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.limuren.blog.mapper.categoryMapper" >
-  <resultMap id="BaseResultMap" type="com.limuren.blog.pojo.category" >
+<mapper namespace="com.limuren.blog.mapper.CategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.limuren.blog.pojo.Category" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="parent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -25,15 +25,15 @@
     delete from category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.limuren.blog.pojo.category" >
+  <insert id="insert" parameterType="com.limuren.blog.pojo.Category" >
     insert into category (id, parent_id, name, 
       status, sort_order, create_time, 
       update_time)
     values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{status,jdbcType=BIT}, #{sortOrder,jdbcType=INTEGER}, <!-- #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}) -->now(),now()
+      #{status,jdbcType=BIT}, #{sortOrder,jdbcType=INTEGER}, now(), 
+      now())
   </insert>
-  <insert id="insertSelective" parameterType="com.limuren.blog.pojo.category" >
+  <insert id="insertSelective" parameterType="com.limuren.blog.pojo.Category" >
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -51,14 +51,14 @@
       <if test="sortOrder != null" >
         sort_order,
       </if>
-      <!-- <if test="createtime != null" >
-        createTime,
+      <!-- <if test="createTime != null" >
+        create_time,
       </if>
-      <if test="updatetime != null" >
-        updateTime,
+      <if test="updateTime != null" >
+        update_time,
       </if> -->
-      createTime,
-      updateTime
+      create_time,
+      update_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -76,17 +76,17 @@
       <if test="sortOrder != null" >
         #{sortOrder,jdbcType=INTEGER},
       </if>
-      <!-- <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
+      <!-- <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null" >
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
       </if> -->
       now(),
       now()
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.limuren.blog.pojo.category" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.limuren.blog.pojo.Category" >
     update category
     <set >
       <if test="parentId != null" >
@@ -101,25 +101,31 @@
       <if test="sortOrder != null" >
         sort_order = #{sortOrder,jdbcType=INTEGER},
       </if>
-      <!-- <if test="createtime != null" >
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <!-- <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null" >
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if> -->
-        updateTime = now()
+      update_time = now()
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.limuren.blog.pojo.category" >
+  <update id="updateByPrimaryKey" parameterType="com.limuren.blog.pojo.Category" >
     update category
     set parent_id = #{parentId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
       sort_order = #{sortOrder,jdbcType=INTEGER},
-      <!-- createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP} -->
-      updateTime = now()
+      <!-- create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP} -->
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectCategoryChildrenByParentId" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List"/>
+    from category
+    where parent_id = #{parentId}
+  </select>
 </mapper>

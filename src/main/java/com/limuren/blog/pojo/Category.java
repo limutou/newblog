@@ -2,7 +2,7 @@ package com.limuren.blog.pojo;
 
 import java.util.Date;
 
-public class category {
+public class Category {
     private Integer id;
 
     private Integer parentId;
@@ -17,7 +17,7 @@ public class category {
 
     private Date updateTime;
 
-    public category(Integer id, Integer parentId, String name, Boolean status, Integer sortOrder, Date createTime, Date updateTime) {
+    public Category(Integer id, Integer parentId, String name, Boolean status, Integer sortOrder, Date createTime, Date updateTime) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
@@ -27,7 +27,7 @@ public class category {
         this.updateTime = updateTime;
     }
 
-    public category() {
+    public Category() {
         super();
     }
 

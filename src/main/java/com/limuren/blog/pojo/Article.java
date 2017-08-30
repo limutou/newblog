@@ -7,13 +7,15 @@ public class Article {
 
     private Integer user;
 
+    private Integer category;
+
     private String tittle;
 
     private String simpletext;
 
     private String imgurl;
 
-    private Integer status;
+    private Boolean status;
 
     private Date createtime;
 
@@ -21,9 +23,10 @@ public class Article {
 
     private String richtext;
 
-    public Article(Integer articleid, Integer user, String tittle, String simpletext, String imgurl, Integer status, Date createtime, Date updatetime, String richtext) {
+    public Article(Integer articleid, Integer user, Integer category, String tittle, String simpletext, String imgurl, Boolean status, Date createtime, Date updatetime, String richtext) {
         this.articleid = articleid;
         this.user = user;
+        this.category = category;
         this.tittle = tittle;
         this.simpletext = simpletext;
         this.imgurl = imgurl;
@@ -53,6 +56,14 @@ public class Article {
         this.user = user;
     }
 
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
+
     public String getTittle() {
         return tittle;
     }
@@ -77,11 +88,11 @@ public class Article {
         this.imgurl = imgurl == null ? null : imgurl.trim();
     }
 
-    public Integer getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

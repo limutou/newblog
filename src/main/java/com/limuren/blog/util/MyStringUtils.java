@@ -2,7 +2,9 @@ package com.limuren.blog.util;
 
 public class MyStringUtils {
 	
-//	@NotBlank:只用于String,不能为null且trim()之后size>0
+	public static final String EMPTY = "";
+	
+	//	@NotBlank:只用于String,不能为null且trim()之后size>0
 	public static boolean isNotBlank(String str) {
 		return (str != null && str.trim().length() > 0);
 	}

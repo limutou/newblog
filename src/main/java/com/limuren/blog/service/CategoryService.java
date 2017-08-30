@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.limuren.blog.common.ResponseCode;
 import com.limuren.blog.common.ServerResponse;
 import com.limuren.blog.mapper.CategoryMapper;
 import com.limuren.blog.pojo.Category;
@@ -25,7 +26,7 @@ public class CategoryService{
 
 	public ServerResponse addCategory(String categoryName, Integer parentId) {
         if(parentId == null || MyStringUtils.isBlank(categoryName)){
-            return ServerResponse.createByErrorMessage("添加品类参数错误");
+        	return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "添加品类参数错误");
         }
 
         Category category = new Category();

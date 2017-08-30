@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.limuren.blog.common.ResponseCode;
 import com.limuren.blog.common.ServerResponse;
 import com.limuren.blog.mapper.UserMapper;
 import com.limuren.blog.pojo.User;
@@ -46,7 +47,7 @@ public class UserService {
             return ServerResponse.createBySuccessMessage("注册成功");
         	
     	}
-    	return ServerResponse.createByErrorMessage("参数不能为空");
+    	return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "参数不能为空");
     }
     
     public ServerResponse<User> login(String username, String password){
@@ -65,7 +66,7 @@ public class UserService {
     		}
     		
     	}
-    	return ServerResponse.createByErrorMessage("参数不能为空");
+    	return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "参数不能为空");
     }
     public ServerResponse<String> resetPassword(Integer userid,String passwordOld,String passwordNew){
     	if(MyStringUtils.isNotBlank(passwordOld)
@@ -84,7 +85,7 @@ public class UserService {
     		logger.error("修改用户密码时出错，用户ID为：{}，修改前密码为：{}，修改后密码为：{}",userid,passwordOld,passwordNew);
 			return ServerResponse.createBySuccessMessage("系统发生异常");
     	}
-		return ServerResponse.createByErrorMessage("参数不能为空");
+    	return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "参数不能为空");
     }
     public ServerResponse<User> getInformation(Integer userId){
     	User user = userMapper.selectByPrimaryKey(userId);
@@ -110,7 +111,7 @@ public class UserService {
     		return ServerResponse.createByErrorMessage("用户信息更新异常");
     		
     	}
-		return ServerResponse.createBySuccessMessage("传参错误");
+    	return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "传参错误");
     }
     public Integer getUserRole(Integer userid) {
     	return userMapper.selectRoleByUserid(userid);

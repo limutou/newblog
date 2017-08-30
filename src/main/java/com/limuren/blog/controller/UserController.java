@@ -28,6 +28,10 @@ public class UserController {
 		//防止恶意操作
 		user.setStatus(null);
 		
+		user.setCreatetime(null);
+		
+		user.setUpdatetime(null);
+		
 		return userService.register(user);
 	}
 	

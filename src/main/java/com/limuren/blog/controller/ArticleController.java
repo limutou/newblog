@@ -27,51 +27,6 @@ public class ArticleController {
 	@Autowired
 	UserService userService;
 	
-	@PostMapping("addArticle.do")
-	public ServerResponse addArticle(HttpSession session,Article article) {
-        User user = (User)session.getAttribute(Const.CURRENT_USER);
-        if(user == null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录");
-        }
-        //校验一下是否有权限
-        if(userService.getUserRole(user.getUserid())>=Role.AUTHOR.getRole()){
-        	//防止恶意操作
-        	article.setArticleid(null);
-        	
-        	article.setUser(user.getUserid());
-        	
-        	article.setStatus(null);
-        	
-        	article.setCreatetime(null);
-        	
-        	article.setUpdatetime(null);
-        	
-            return articleService.addArticle(article);
-        }else{
-            return ServerResponse.createByErrorMessage("无权限操作,需要写作权限");
-        }
-	}
-	@PostMapping("setArticle.do")
-	public ServerResponse setArticle(HttpSession session,Article article) {
-        User user = (User)session.getAttribute(Const.CURRENT_USER);
-        if(user == null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录");
-        }
-        article.setUser(user.getUserid());
-		return articleService.setArticle(article);
-	}
-	@GetMapping("deleteArticle.do")
-	public ServerResponse deleteArticle(HttpSession session,Integer articleid) {
-        User user = (User)session.getAttribute(Const.CURRENT_USER);
-        if(user == null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录");
-        }
-        Article article = new Article();
-        article.setArticleid(articleid);
-        article.setUser(user.getUserid());
-		return articleService.deleteArticle(article);
-	}
-	
 	@GetMapping("getAllArticleList.do")
 	public ServerResponse getAllArticleList(HttpSession session,
 			@RequestParam(value = "categoryId",required = false)Integer categoryId,

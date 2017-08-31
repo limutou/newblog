@@ -190,19 +190,59 @@
 		where articleid = #{articleid,jdbcType=INTEGER}
 	</update>
 
-	<select id="getAllArticleList" resultType="map">
+<!-- 	<select id="getAllArticleList" resultType="com.limuren.blog.pojo.Article">
 		select
 		<include refid="Base_Column_List" />
 		from article
 		ORDER BY articleid asc
 	</select>
-	<select id="getAllArticleListByCategory" resultType="map"
+ -->
+ 	<select id="getAllArticleListByCategory" resultType="com.limuren.blog.pojo.Article"
 		parameterType="map">
 		select
 		<include refid="Base_Column_List" />
 		from article
-		WHERE category = #{category} 
+		<if test="category != null">
+			WHERE category = #{category,jdbcType=INTEGER} 
+		</if>
 		ORDER BY articleid asc
+	</select>
+	<resultMap id="VoResultMapWithBLOBs" type="com.limuren.blog.vo.ArticleDetailPageVo">
+		<constructor>
+			<idArg column="articleid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="tittle" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="richText" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+			<arg column="imgurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="status" jdbcType="BIT" javaType="java.lang.Boolean" />
+			<arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+			<arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="nickname" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="userhead" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="signature" jdbcType="VARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+	<select id="selectArticleDetailPageByPrimaryKey" resultMap="VoResultMapWithBLOBs" parameterType="java.lang.Integer">
+		SELECT
+		a.articleid,
+		c.id,
+		c.name,
+		a.tittle,
+		a.richText,
+		a.imgurl,
+		a.`status`,
+		a.updateTime,
+		u.userid,
+		u.nickname,
+		u.userhead,
+		u.signature
+		FROM
+		article AS a
+		Left Join category AS c ON a.category = c.id
+		Left Join `user` AS u ON u.userid = a.`user`
+		WHERE
+		a.articleid = #{articleid,jdbcType=INTEGER}
 	</select>
 
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.limuren.blog.pojo.Article;
+import com.limuren.blog.vo.ArticleDetailPageVo;
 
 public interface ArticleMapper {
 	
@@ -22,7 +23,10 @@ public interface ArticleMapper {
 
     int updateByPrimaryKey(Article record);
     
-    List<Article> getAllArticleList();
+    /*List<Article> getAllArticleList();*/
     
     List<Article> getAllArticleListByCategory(@Param("category")Integer category);
+    
+    ArticleDetailPageVo selectArticleDetailPageByPrimaryKey(Integer articleid);
+    
 }

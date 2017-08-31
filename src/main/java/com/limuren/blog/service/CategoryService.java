@@ -32,7 +32,7 @@ public class CategoryService{
         Category category = new Category();
         category.setName(categoryName);
         category.setParentId(parentId);
-        category.setStatus(true);//这个分类是可用的
+        category.setStatus(null);//使用数据库默认值
 
         int rowCount = categoryMapper.insert(category);
         if(rowCount > 0){

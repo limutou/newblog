@@ -15,6 +15,7 @@ import com.limuren.blog.mapper.ArticleMapper;
 import com.limuren.blog.pojo.Article;
 import com.limuren.blog.util.DateTimeUtil;
 import com.limuren.blog.util.MyStringUtils;
+import com.limuren.blog.vo.ArticleDetailPageVo;
 import com.limuren.blog.vo.ArticleListVo;
 
 @Service
@@ -99,11 +100,13 @@ public class ArticleService{
 	public ServerResponse getAllArticleList(Integer categoryId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Article> list = null;
-		if(categoryId!=null) {
-			list=articleMapper.getAllArticleListByCategory(categoryId);
-		}else {
-			list=articleMapper.getAllArticleList();
-		}
+//		if(categoryId!=null) {
+//			list=articleMapper.getAllArticleListByCategory(categoryId);
+//		}else {
+//			list=articleMapper.getAllArticleList();
+//		}
+		list=articleMapper.getAllArticleListByCategory(categoryId);
+		
 		PageInfo pageResult = new PageInfo(list);
 		
 		pageResult.setList(assembleArticleListVo(list));
@@ -113,32 +116,28 @@ public class ArticleService{
 	private List<ArticleListVo> assembleArticleListVo(List<Article> list) {
 		List<ArticleListVo> voList = new ArrayList();
 		ArticleListVo vo ;
-		for (Article article : list) {
-			vo = new ArticleListVo();
-			voList.add(vo);
-			vo.articleid = article.getArticleid();
-			vo.user = article.getUser();
-			vo.category = article.getCategory();
-			vo.imgurl = article.getImgurl();
-			vo.tittle = article.getTittle();
-			vo.simpletext = article.getSimpletext();
-			vo.createtime = DateTimeUtil.dateToStr(article.getCreatetime());
-			vo.updatetime = DateTimeUtil.dateToStr(article.getUpdatetime());
-		}
+		if(list!=null)
+			for (Article article : list) {
+				vo = new ArticleListVo();
+				voList.add(vo);
+				vo.articleid = article.getArticleid();
+				vo.user = article.getUser();
+				vo.category = article.getCategory();
+				vo.imgurl = article.getImgurl();
+				vo.tittle = article.getTittle();
+				vo.simpletext = article.getSimpletext();
+				vo.createtime = DateTimeUtil.dateToStr(article.getCreatetime());
+				vo.updatetime = DateTimeUtil.dateToStr(article.getUpdatetime());
+			}
 		return voList;
 	}
 
 	public ServerResponse getArticleDetailPage(Integer articleid) {
-		Article article = articleMapper.selectByPrimaryKey(articleid);
-		if(article==null)
+		ArticleDetailPageVo vo = articleMapper.selectArticleDetailPageByPrimaryKey(articleid);
+		if(vo==null)
 			return ServerResponse.createByErrorMessage("查看的文章不存在可能已被删除");
 		
-		return ServerResponse.createBySuccess(assembleArticleDetailPageVo(article));
+		return ServerResponse.createBySuccess(vo);
 	}
 
-	private Object assembleArticleDetailPageVo(Article article) {
-		
-		return null;
-	}
-	
 }

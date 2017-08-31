@@ -81,9 +81,9 @@ public class ArticleController {
 		return articleService.getAllArticleList(categoryId,pageNum,pageSize);
 	}
 	
-	@GetMapping("getArticleDetail")
+	@GetMapping("getArticleDetail.do")
 	public ServerResponse getArticlePage(HttpSession session,Integer articleid) {
-		if(articleid==null) 
+		if(articleid==null)
 			return ServerResponse.createByErrorMessage("请指定文章");
 		return articleService.getArticleDetailPage(articleid);
 	}

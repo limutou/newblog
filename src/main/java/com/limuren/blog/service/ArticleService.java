@@ -133,7 +133,7 @@ public class ArticleService{
 	}
 
 	public ServerResponse getArticleDetailPage(Integer articleid) {
-		ArticleDetailPageVo vo = articleMapper.selectArticleDetailPageByPrimaryKey(articleid);
+		ArticleDetailPageVo vo = articleMapper.selectArticleDetailPageByPrimaryKey(articleid,true,true);
 		if(vo==null)
 			return ServerResponse.createByErrorMessage("查看的文章不存在可能已被删除");
 		

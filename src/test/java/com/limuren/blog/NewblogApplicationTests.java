@@ -11,6 +11,7 @@ public class NewblogApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
 	}
 
 }

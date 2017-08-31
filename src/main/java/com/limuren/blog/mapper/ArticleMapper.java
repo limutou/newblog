@@ -27,6 +27,8 @@ public interface ArticleMapper {
     
     List<Article> getAllArticleListByCategory(@Param("category")Integer category);
     
-    ArticleDetailPageVo selectArticleDetailPageByPrimaryKey(Integer articleid);
+    ArticleDetailPageVo selectArticleDetailPageByPrimaryKey(@Param("articleid")Integer articleid,
+    		@Param("category")Boolean category,@Param("article")Boolean article);
+    
     
 }

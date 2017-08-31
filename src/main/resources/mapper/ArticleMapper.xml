@@ -223,7 +223,7 @@
 			<arg column="signature" jdbcType="VARCHAR" javaType="java.lang.String" />
 		</constructor>
 	</resultMap>
-	<select id="selectArticleDetailPageByPrimaryKey" resultMap="VoResultMapWithBLOBs" parameterType="java.lang.Integer">
+	<select id="selectArticleDetailPageByPrimaryKey" resultMap="VoResultMapWithBLOBs" parameterType="map">
 		SELECT
 		a.articleid,
 		c.id,
@@ -243,6 +243,13 @@
 		Left Join `user` AS u ON u.userid = a.`user`
 		WHERE
 		a.articleid = #{articleid,jdbcType=INTEGER}
+		<if test="article != null">
+			AND c.status = #{article,jdbcType=BIT}
+		</if>
+		<if test="category != null">
+			AND a.status = #{category,jdbcType=BIT}
+		</if>
+		
 	</select>
 
 </mapper>

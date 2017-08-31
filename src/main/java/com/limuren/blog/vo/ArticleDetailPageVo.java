@@ -147,6 +147,14 @@ public class ArticleDetailPageVo {
 	public void setSignature(String signature) {
 		this.signature = signature;
 	}
+
+	@Override
+	public String toString() {
+		return "ArticleDetailPageVo [articleid=" + articleid + ", id=" + id + ", name=" + name + ", tittle=" + tittle
+				+ ", richText=" + richText + ", imgurl=" + imgurl + ", status=" + status + ", updateTime=" + updateTime
+				+ ", userid=" + userid + ", nickname=" + nickname + ", userhead=" + userhead + ", signature="
+				+ signature + "]";
+	}
 	
 	
 }

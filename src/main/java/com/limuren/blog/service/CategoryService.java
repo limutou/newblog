@@ -34,7 +34,7 @@ public class CategoryService{
         category.setParentId(parentId);
         category.setStatus(null);//使用数据库默认值
 
-        int rowCount = categoryMapper.insert(category);
+        int rowCount = categoryMapper.insertSelective(category);
         if(rowCount > 0){
             return ServerResponse.createBySuccess("添加品类成功");
         }

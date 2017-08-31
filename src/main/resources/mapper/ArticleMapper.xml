@@ -190,20 +190,17 @@
 		where articleid = #{articleid,jdbcType=INTEGER}
 	</update>
 
-<!-- 	<select id="getAllArticleList" resultType="com.limuren.blog.pojo.Article">
-		select
-		<include refid="Base_Column_List" />
-		from article
-		ORDER BY articleid asc
-	</select>
- -->
  	<select id="getAllArticleListByCategory" resultType="com.limuren.blog.pojo.Article"
 		parameterType="map">
 		select
 		<include refid="Base_Column_List" />
 		from article
+		WHERE 1
 		<if test="category != null">
-			WHERE category = #{category,jdbcType=INTEGER} 
+			AND category = #{category,jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			AND status = #{status,jdbcType=BIT}
 		</if>
 		ORDER BY articleid asc
 	</select>

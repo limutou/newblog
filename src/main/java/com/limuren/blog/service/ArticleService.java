@@ -100,12 +100,7 @@ public class ArticleService{
 	public ServerResponse getAllArticleList(Integer categoryId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Article> list = null;
-//		if(categoryId!=null) {
-//			list=articleMapper.getAllArticleListByCategory(categoryId);
-//		}else {
-//			list=articleMapper.getAllArticleList();
-//		}
-		list=articleMapper.getAllArticleListByCategory(categoryId);
+		list=articleMapper.getAllArticleListByCategory(categoryId,true);
 		
 		PageInfo pageResult = new PageInfo(list);
 		
@@ -133,7 +128,7 @@ public class ArticleService{
 	}
 
 	public ServerResponse getArticleDetailPage(Integer articleid) {
-		ArticleDetailPageVo vo = articleMapper.selectArticleDetailPageByPrimaryKey(articleid,true,true);
+		ArticleDetailPageVo vo = articleMapper.selectArticleDetailPageByPrimaryKey(articleid,null,true);
 		if(vo==null)
 			return ServerResponse.createByErrorMessage("查看的文章不存在可能已被删除");
 		

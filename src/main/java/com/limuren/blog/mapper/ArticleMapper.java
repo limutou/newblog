@@ -23,10 +23,21 @@ public interface ArticleMapper {
 
     int updateByPrimaryKey(Article record);
     
-    /*List<Article> getAllArticleList();*/
+    /**
+     * 查询全部文章的列表
+     * @param category 根据目录ID查询 传入null时查询全部
+     * @param status 文章状态，传入true时查询公开状态的文章，传入false时查询不公开状态文章，传入null时两种情况都查询
+     * @return
+     */
+    List<Article> getAllArticleListByCategory(@Param("category")Integer category,@Param("status")Boolean status);
     
-    List<Article> getAllArticleListByCategory(@Param("category")Integer category);
-    
+    /**
+     * 查询文章详情
+     * @param articleid 查询文章的ID
+     * @param category 文章目录状态 传入null时查询全部
+     * @param article 文章状态(公开/不公开) 传入null时查询全部
+     * @return
+     */
     ArticleDetailPageVo selectArticleDetailPageByPrimaryKey(@Param("articleid")Integer articleid,
     		@Param("category")Boolean category,@Param("article")Boolean article);
     

@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import com.limuren.blog.common.ServerResponse;
 import com.limuren.blog.mapper.ArticleMapper;
 import com.limuren.blog.pojo.Article;
+import com.limuren.blog.pojo.User;
 import com.limuren.blog.util.DateTimeUtil;
 import com.limuren.blog.util.MyStringUtils;
 import com.limuren.blog.vo.ArticleDetailPageVo;
@@ -101,6 +102,18 @@ public class ArticleService{
         PageHelper.startPage(pageNum,pageSize);
         List<Article> list = null;
 		list=articleMapper.getAllArticleListByCategory(categoryId,true);
+		
+		PageInfo pageResult = new PageInfo(list);
+		
+		pageResult.setList(assembleArticleListVo(list));
+		return ServerResponse.createBySuccess(pageResult);
+	}
+	public ServerResponse getUserArticleList(Integer userid,Boolean status, int pageNum, int pageSize,String orderBy) {
+		
+        PageHelper.startPage(pageNum,pageSize);
+//        PageHelper.orderBy(orderBy);
+        List<Article> list = null;
+		list=articleMapper.getUserArticleList(userid,status);
 		
 		PageInfo pageResult = new PageInfo(list);
 		

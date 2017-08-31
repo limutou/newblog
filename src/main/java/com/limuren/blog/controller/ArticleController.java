@@ -42,4 +42,16 @@ public class ArticleController {
 			return ServerResponse.createByErrorMessage("请指定文章");
 		return articleService.getArticleDetailPage(articleid);
 	}
+	@GetMapping("getUserArticle.do")
+	public ServerResponse getUserArticle(HttpSession session,
+			Integer userid,
+            @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
+            @RequestParam(value = "pageSize",defaultValue = "10") int pageSize,
+            String orderBy
+			) {
+		if(userid==null)
+			return ServerResponse.createByErrorMessage("请指定要查看的用户");
+		return articleService.getUserArticleList(userid, true, pageNum, pageSize, orderBy);
+	}
+	
 }

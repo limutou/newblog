@@ -249,4 +249,15 @@
 		
 	</select>
 
+ 	<select id="getUserArticleList" resultType="com.limuren.blog.pojo.Article"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from article
+		WHERE  user = #{user,jdbcType=INTEGER}
+		<if test="status != null">
+			AND status = #{status,jdbcType=BIT}
+		</if>
+		ORDER BY articleid desc
+	</select>
 </mapper>

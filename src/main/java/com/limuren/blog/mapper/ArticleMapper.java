@@ -39,7 +39,10 @@ public interface ArticleMapper {
      * @return
      */
     ArticleDetailPageVo selectArticleDetailPageByPrimaryKey(@Param("articleid")Integer articleid,
-    		@Param("category")Boolean category,@Param("article")Boolean article);
+    		@Param("category")Boolean isCategoryPublic,@Param("article")Boolean isArticlePublic);
+    
+	List<Article> getUserArticleList(@Param("user")Integer user, @Param("status")Boolean isArticlePublic);
+
     
     
 }

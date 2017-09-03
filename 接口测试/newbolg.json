@@ -1,0 +1,876 @@
+{
+  "front-version": "2.8.0.1",
+  "version": 3,
+  "nodes": [
+    {
+      "type": "Project",
+      "id": "f210d05c-606a-49a7-b27a-7c9f92e31f8c",
+      "lastModified": "2017-08-31T15:28:00.561+08:00",
+      "name": "newblog"
+    },
+    {
+      "type": "Service",
+      "description": "",
+      "id": "904bb564-7a69-49a7-b155-962a34b51162",
+      "lastModified": "2017-08-30T15:46:00.831+08:00",
+      "name": "ArticleController",
+      "parentId": "f210d05c-606a-49a7-b27a-7c9f92e31f8c"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        }
+      },
+      "id": "4337d13f-f0e2-4c6b-80b4-0f8c76575a28",
+      "lastModified": "2017-08-31T12:38:22.265+08:00",
+      "name": "Request 3",
+      "headers": [],
+      "metaInfo": {},
+      "parentId": "904bb564-7a69-49a7-b155-962a34b51162"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "category",
+              "value": "100032"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "tittle",
+              "value": "tittle"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "simpletext",
+              "value": "simpletext"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "imgurl",
+              "value": "imgurl"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "status",
+              "value": "true"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "richtext",
+              "value": "richtext"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/addArticle.do"
+      },
+      "id": "2f7fb351-79d1-4560-871c-ae61dd31ca5d",
+      "lastModified": "2017-08-31T11:47:45.998+08:00",
+      "name": "addArticle.do",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "metaInfo": {},
+      "parentId": "904bb564-7a69-49a7-b155-962a34b51162"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "categoryId",
+              "value": ""
+            },
+            {
+              "enabled": true,
+              "name": "pageNum",
+              "value": ""
+            },
+            {
+              "enabled": true,
+              "name": "pageSize",
+              "value": ""
+            },
+            {
+              "enabled": true,
+              "name": "orderBy",
+              "value": ""
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/getAllArticleList.do"
+      },
+      "id": "2557ff31-6ba3-4bff-8fbc-f8c3ca4a984b",
+      "lastModified": "2017-08-30T22:10:24.268+08:00",
+      "name": "getAllArticleList.do",
+      "headers": [],
+      "metaInfo": {},
+      "parentId": "904bb564-7a69-49a7-b155-962a34b51162"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "articleid",
+              "value": "30"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/getArticleDetail.do"
+      },
+      "id": "5a67512b-e462-41af-8a3b-a57ddca3ef95",
+      "lastModified": "2017-08-31T13:08:23.239+08:00",
+      "name": "getArticleDetail.do",
+      "headers": [],
+      "metaInfo": {},
+      "parentId": "904bb564-7a69-49a7-b155-962a34b51162"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "name": "orderBy",
+              "value": "ASC"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/getMyArticle.do"
+      },
+      "id": "9d4bfaa6-12cd-417c-8981-775e73495555",
+      "lastModified": "2017-08-31T15:28:00.561+08:00",
+      "name": "getMyArticle.do",
+      "headers": [],
+      "metaInfo": {},
+      "parentId": "904bb564-7a69-49a7-b155-962a34b51162"
+    },
+    {
+      "type": "Service",
+      "id": "56852c34-7d3e-4ca5-aeb3-d08f1340ca6a",
+      "lastModified": "2017-08-29T18:10:30.710+08:00",
+      "name": "CategoryManageController",
+      "parentId": "f210d05c-606a-49a7-b27a-7c9f92e31f8c"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "parentId",
+              "value": "0"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "categoryName",
+              "value": "categoryName"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/addCategory.do"
+      },
+      "id": "67f69c9c-f2a7-4397-9755-2dba490ccde1",
+      "lastModified": "2017-08-29T18:14:38.215+08:00",
+      "name": "addCategory.do",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "metaInfo": {},
+      "parentId": "56852c34-7d3e-4ca5-aeb3-d08f1340ca6a"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/getCategoryAndDeepChildrenCategory.do"
+      },
+      "id": "a7192aab-1d3c-4573-b854-eef0dd9cd089",
+      "lastModified": "2017-08-29T19:15:49.584+08:00",
+      "name": "getCategoryAndDeepChildrenCategory.do",
+      "headers": [],
+      "metaInfo": {},
+      "parentId": "56852c34-7d3e-4ca5-aeb3-d08f1340ca6a"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/getChildrenParallelCategory.do"
+      },
+      "id": "531d579e-eb3f-4809-a822-776136e6c912",
+      "lastModified": "2017-08-29T19:15:38.481+08:00",
+      "name": "getChildrenParallelCategory.do",
+      "headers": [],
+      "metaInfo": {},
+      "parentId": "56852c34-7d3e-4ca5-aeb3-d08f1340ca6a"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "parentId",
+              "value": "0"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "categoryName",
+              "value": "categoryName23333"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "categoryId",
+              "value": "2"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/setCategoryName.do"
+      },
+      "id": "edd22496-cadb-45cd-8055-d66a3a612667",
+      "lastModified": "2017-08-29T18:25:04.040+08:00",
+      "name": "setCategoryName.do",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "metaInfo": {},
+      "parentId": "56852c34-7d3e-4ca5-aeb3-d08f1340ca6a"
+    },
+    {
+      "type": "Service",
+      "id": "bc77f583-28c0-4b80-b919-2ea2e3e521d2",
+      "lastModified": "2017-08-29T18:10:22.417+08:00",
+      "name": "FileController",
+      "parentId": "f210d05c-606a-49a7-b27a-7c9f92e31f8c"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "multipart/form-data",
+          "items": [
+            {
+              "enabled": true,
+              "type": "File",
+              "name": "upload_file"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/upload.do"
+      },
+      "id": "9264df4e-f3fc-416b-9cc8-4d06b9c9dba7",
+      "lastModified": "2017-08-28T21:01:15.016+08:00",
+      "name": "upload.do",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "multipart/form-data"
+        }
+      ],
+      "metaInfo": {},
+      "parentId": "bc77f583-28c0-4b80-b919-2ea2e3e521d2"
+    },
+    {
+      "type": "Scenario",
+      "id": "42d05135-0987-479b-917b-a2a80faf08d8",
+      "lastModified": "2017-08-29T17:48:50.290+08:00",
+      "name": "UserController",
+      "requestOrder": [
+        "register.do",
+        "login.do",
+        "dislogin.do",
+        "resetPassword.do",
+        "getInformation.do",
+        "updateInformation.do"
+      ],
+      "parentId": "f210d05c-606a-49a7-b27a-7c9f92e31f8c"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "username",
+              "value": "username"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "password",
+              "value": "password"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "email",
+              "value": "email"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "nickname",
+              "value": "nickname"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/register.do"
+      },
+      "id": "d3e14a65-73fb-47bd-846e-0286be3db3ae",
+      "lastModified": "2017-08-28T20:08:27.476+08:00",
+      "name": "register.do",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "metaInfo": {},
+      "parentId": "42d05135-0987-479b-917b-a2a80faf08d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "username",
+              "value": "username"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "password",
+              "value": "password"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "email",
+              "value": "email"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "nickname",
+              "value": "nickname"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/login.do"
+      },
+      "id": "67e52301-08ca-4ee4-830e-e0568337bdd1",
+      "lastModified": "2017-08-28T20:37:30.463+08:00",
+      "name": "login.do",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "metaInfo": {},
+      "parentId": "42d05135-0987-479b-917b-a2a80faf08d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "username",
+              "value": "username"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "password",
+              "value": "password"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "email",
+              "value": "email"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "nickname",
+              "value": "nickname"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/dislogin.do"
+      },
+      "id": "65a257e9-d85a-4e99-8952-9c7ddf493682",
+      "lastModified": "2017-08-28T20:38:01.693+08:00",
+      "name": "dislogin.do",
+      "headers": [],
+      "metaInfo": {},
+      "parentId": "42d05135-0987-479b-917b-a2a80faf08d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "passwordOld",
+              "value": "password"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "passwordNew",
+              "value": "password"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/resetPassword.do"
+      },
+      "id": "e6dca7bc-396c-40b3-841f-56ae01555fab",
+      "lastModified": "2017-08-28T20:45:15.053+08:00",
+      "name": "resetPassword.do",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "metaInfo": {},
+      "parentId": "42d05135-0987-479b-917b-a2a80faf08d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/getInformation.do"
+      },
+      "id": "6035cbae-d3ab-4e16-bd22-c21514877c90",
+      "lastModified": "2017-08-28T20:48:38.703+08:00",
+      "name": "getInformation.do",
+      "headers": [],
+      "metaInfo": {},
+      "parentId": "42d05135-0987-479b-917b-a2a80faf08d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": [
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "email",
+              "value": "email"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "nickname",
+              "value": "nickname"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "userhead",
+              "value": "userhead"
+            },
+            {
+              "enabled": true,
+              "type": "Text",
+              "name": "signature",
+              "value": "signature"
+            }
+          ]
+        },
+        "bodyType": "Form",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/updateInformation.do"
+      },
+      "id": "c6ce427e-c0c8-4c8a-9162-b2854acdbb64",
+      "lastModified": "2017-08-28T20:50:48.210+08:00",
+      "name": "updateInformation.do",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "metaInfo": {},
+      "parentId": "42d05135-0987-479b-917b-a2a80faf08d8"
+    }
+  ]
+}
